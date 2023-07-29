@@ -12,21 +12,23 @@ const inquirer = require('inquirer');
 // })
 
 // TODO: Create an array of questions for user input
-const questions = [{
-  type: "input",
-  message: "What is your name?",
-  name: "userName"
-},
-{
-  type: "input",
-  message: "What is your bio?",
-  name: "userBio"
-},
-{
-  type: "input",
-  message: "What is your preferred method of communication?",
-  name: "userCommunication"
-},];
+const questions = [
+  {
+    type: "input",
+    message: "What is your name?",
+    name: "userName"
+  },
+  // {
+  //   type: "input",
+  //   message: "What is your bio?",
+  //   name: "userBio"
+  // },
+  // {
+  //   type: "input",
+  //   message: "What is your preferred method of communication?",
+  //   name: "userCommunication"
+  // },
+];
 
 //this 
 inquirer
@@ -39,7 +41,7 @@ inquirer
 function updateReadme(answers) {
   const readmeContent = `Hello World!`;
 
-  fs.writeFile('README.md', readmeContent, (err) => {
+  fs.writeFile('../README.md', readmeContent, (err) => {
     if (err) throw err;
     console.log('HTML file updated!');
   });
