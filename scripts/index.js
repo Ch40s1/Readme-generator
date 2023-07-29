@@ -15,8 +15,8 @@ const inquirer = require('inquirer');
 const questions = [
   {
     type: "input",
-    message: "What is your name?",
-    name: "userName"
+    message: "What is the name of the repository?",
+    name: "repoName"
   },
   // {
   //   type: "input",
@@ -39,10 +39,46 @@ inquirer
   });
 
 function updateReadme(answers) {
-  const readmeContent = `Hello World!`;
+  const readmeContent =
+`# ${answers.repoName}
+${"this is were the paragraph will go"}
+  
+## Website Link 
+${' this is were the live link will go'}
+  
+## Table of Contents
+* [Usage](#usage)
+* [Credits](#credits)
+* [Collaborators](#collaborators)
+* [License](#license)
+* [Features](#features)
+  
+### To contribute
+${'contribute'}
+  
+  
+## Website Image  
+  
+  ![(${'image description'})](${'image path'})
+  
+## Usage
+${'usage info'}
+  
+## Credits
+${"any credits"}
+  
+  
+## Collaborators
+${'any coloborators'} 
+  
+## License
+${'license'}
+  
+## Features
+${'features'} `
 
   fs.writeFile('../README.md', readmeContent, (err) => {
     if (err) throw err;
-    console.log('HTML file updated!');
+    console.log('README file updated!');
   });
 }
