@@ -1,6 +1,15 @@
 // GIVEN a command-line application that accepts user input
 // WHEN I am prompted for information about my application repository
-// THEN a high-quality, professional README.md is generated with the title of my project and sections entitled Description, Table of Contents, Installation, Usage, License, Contributing, Tests, and Questions
+// THEN a high-quality, professional README.md is generated with the 
+// title of my project and 
+// sections entitled Description, 
+// Table of Contents, 
+// Installation, 
+// Usage, 
+// License, 
+// Contributing, 
+// Tests, and 
+// Questions
 // WHEN I enter my project title
 // THEN this is displayed as the title of the README
 // WHEN I enter a description, installation instructions, usage information, contribution guidelines, and test instructions
@@ -115,11 +124,31 @@ const questions = [
     message: "What your name?",
     name: "userName"
   },
-  {
-    type: "input",
-    message: "What is the name of the repository?",
-    name: "repoName"
-  },
+  // {
+  //   type: "input",
+  //   message: "What is the title of the repository?",
+  //   name: "repoName"
+  // },
+  // {
+  //   type: "input",
+  //   message: "Describe your repository?",
+  //   name: "repoDescription"
+  // },
+  // {
+  //   type: "input",
+  //   message: "How would someone install this repository?",
+  //   name: "repoInstallation"
+  // },
+  // {
+  //   type: "input",
+  //   message: "How should someone use this repository?",
+  //   name: "repoUsage"
+  // },
+  // {
+  //   type: "input",
+  //   message: "How would you want someone to contribute?",
+  //   name: "repoContribute"
+  // },
   {
     type: "list",
     message: "What is your preferred license?",
@@ -136,33 +165,44 @@ const questions = [
     // ],
     name: 'userLicense',
   },
+  // {
+  //   type: "input",
+  //   message: "What were some tests done in this repository?",
+  //   name: "repoTests"
+  // },
+  // {
+  //   type: "input",
+  //   message: "Any questions for future developers?",
+  //   name: "repoQuestions"
+  // },
 ];
-
 // gets answers and calls to update the read me
 inquirer
   .prompt(questions)
   .then((answers) => {
     console.log(JSON.stringify(answers));
+    // Update the readme with all the answers
     updateReadme(answers);
   });
 
 function updateReadme(answers) {
   const readmeContent =
 `# ${answers.repoName}
-${"this is were the paragraph will go"}
+${answers.repoDescription}
   
 ## Website Link 
 ${' this is were the live link will go'}
   
 ## Table of Contents
+* [Installation](#installation)
 * [Usage](#usage)
-* [Credits](#credits)
-* [Collaborators](#collaborators)
+* [Contribute](#contribute)
 * [License](#license)
-* [Features](#features)
+* [Tests](#tests)
+* [Questions](#questions)
   
-### To contribute
-${'contribute'}
+## Installation
+${answers.repoInstallation}
   
   
 ## Website Image  
@@ -170,22 +210,20 @@ ${'contribute'}
   ![(${'image description'})](${'image path'})
   
 ## Usage
-${'usage info'}
-  
-## Credits
-${"any credits"}
-  
-  
-## Collaborators
-${'any coloborators'} 
+${answers.repoUsage}
+
+## Contribute
+${answers.repoContribute}
   
 ## License
 ${licenseTexts[answers.userLicense]}
 Copyright (c) 2023 ${answers.userName}
 
   
-## Features
-${'features'} `
+## Tests
+${answers.repoTests} 
+## Questions 
+${answers.repoQuestions}`
 
   fs.writeFile('../README.md', readmeContent, (err) => {
     if (err) throw err;
