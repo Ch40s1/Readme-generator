@@ -105,12 +105,19 @@ CREATIVE COMMONS CORPORATION IS NOT A LAW FIRM AND DOES NOT PROVIDE LEGAL SERVIC
 Statement of Purpose
 
 The laws of most jurisdictions throughout the world automatically confer exclusive Copyright and Related Rights (defined below) upon the creator and subsequent owner(s) (each and all, an "owner") of an original work of authorship and/or a database (each, a "Work").
-`
+`,
+"none": '',
 };
 
 
 const fs = require('fs');
 const inquirer = require('inquirer');
+const {
+  renderLicenseBadge,
+  renderLicenseLink,
+  renderLicenseSection,
+  generateMarkdown,
+} = require('./generateMarkdown');
 // console.log(fs); 
 // fs.readFile('../README.md', 'utf-8', (err, data) => {
 //   if (err) throw err;
@@ -119,11 +126,16 @@ const inquirer = require('inquirer');
 
 // questions for the user
 const questions = [
-  {
-    type: "input",
-    message: "What your name?",
-    name: "userName"
-  },
+  // {
+  //   type: "input",
+  //   message: "What your name?",
+  //   name: "userName"
+  // },
+  // {
+  //   type: "input",
+  //   message: "What your Github username?",
+  //   name: "githubName"
+  // },
   // {
   //   type: "input",
   //   message: "What is the title of the repository?",
@@ -170,24 +182,28 @@ const questions = [
   //   message: "What were some tests done in this repository?",
   //   name: "repoTests"
   // },
-  // {
-  //   type: "input",
-  //   message: "Any questions for future developers?",
-  //   name: "repoQuestions"
-  // },
 ];
 // gets answers and calls to update the read me
 inquirer
   .prompt(questions)
   .then((answers) => {
     console.log(JSON.stringify(answers));
+    const chosenLicense = renderLicenseBadge(answers.userLicense);
+    const licenseLink = renderLicenseLink(answers.userLicense);
+    console.log(chosenLicense);
     // Update the readme with all the answers
-    updateReadme(answers);
+    updateReadme(answers, chosenLicense, licenseLink);
   });
 
-function updateReadme(answers) {
+function updateReadme(answers, chosenLicense, licenseLink) {
   const readmeContent =
-`# ${answers.repoName}
+
+`
+${chosenLicense}
+
+For more information on ${answers.userLicense} visit ${licenseLink}
+
+# ${answers.repoName}
 ${answers.repoDescription}
   
 ## Website Link 
@@ -223,7 +239,7 @@ Copyright (c) 2023 ${answers.userName}
 ## Tests
 ${answers.repoTests} 
 ## Questions 
-${answers.repoQuestions}`
+https://github.com/${answers.githubName}`
 
   fs.writeFile('../README.md', readmeContent, (err) => {
     if (err) throw err;

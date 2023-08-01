@@ -1,3 +1,8 @@
+
+[![MIT License](https://img.shields.io/badge/License-MIT-blue.svg)](https://opensource.org/licenses/MIT)
+
+For more information on MIT visit https://api.github.com/licenses/mit
+
 # undefined
 undefined
   
@@ -37,7 +42,7 @@ to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
 copies of the Software, and to permit persons to whom the Software is
 furnished to do so, subject to the following conditions:
 
-Copyright (c) 2023 fd
+Copyright (c) 2023 undefined
 
   
 ## Tests
