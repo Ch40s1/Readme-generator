@@ -15,7 +15,7 @@ if (licenseBadges.hasOwnProperty(license)) {
   const chosenBadge = licenseBadges[license];
   return chosenBadge;
 } else {
-  return 'no license';
+  return '';
 }
 }
 
@@ -34,7 +34,7 @@ function renderLicenseLink(license) {
   };
   if(githubLicenseLinks.hasOwnProperty(license)){
     const link = githubLicenseLinks[license]
-    return link;
+    return `For more information on ${license} visit ${link}`;
   }else{
     return '';
   }
@@ -42,15 +42,18 @@ function renderLicenseLink(license) {
 
 // TODO: Create a function that returns the license section of README
 // If there is no license, return an empty string
-function renderLicenseSection(license) {}
+function renderLicenseSection(license, userName) {
+  if (license == 'none'){
+  return '';
+}else {
 
-// TODO: Create a function to generate markdown for README
-function generateMarkdown(data) {
-  // return `# ${data.title}
+  const renderSection = `Copyright (c) 2023 ${userName}`
+  return renderSection;
 }
+};
+
 module.exports = {
   renderLicenseBadge,
   renderLicenseLink,
   renderLicenseSection,
-  generateMarkdown,
 };

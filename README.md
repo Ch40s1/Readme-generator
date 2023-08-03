@@ -1,13 +1,10 @@
 
 [![MIT License](https://img.shields.io/badge/License-MIT-blue.svg)](https://opensource.org/licenses/MIT)
 
-For more information on MIT visit https://api.github.com/licenses/mit
+For more information on MIT visit https://opensource.org/licenses/MIT
 
-# undefined
-undefined
-  
-## Website Link 
- this is were the live link will go
+# README Generator
+This README generator is meant for those that want to save time in making a README file. It has all the basic questions for making a professional looking README. If you want to work on your project and not have to worry about the markdown for a README then give this a go.
   
 ## Table of Contents
 * [Installation](#installation)
@@ -18,18 +15,13 @@ undefined
 * [Questions](#questions)
   
 ## Installation
-undefined
-  
-  
-## Website Image  
-  
-  ![(image description)](image path)
+I recommend to download the zip file and add it to your repository. It can also be forked or cloned but any commits made to this repository will show in the sync.
   
 ## Usage
-undefined
+Use nodejs and install inquirer version 8.2.4 using npm. After, run the file using node in the terminal, then asnswer the questions.
 
 ## Contribute
-undefined
+Fork or clone the repository then make a commit.
   
 ## License
 
@@ -42,10 +34,12 @@ to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
 copies of the Software, and to permit persons to whom the Software is
 furnished to do so, subject to the following conditions:
 
-Copyright (c) 2023 undefined
-
+Copyright (c) 2023 Daniel Zarate
   
 ## Tests
-undefined 
+n/a 
+
 ## Questions 
-undefined
+Github: https://github.com/Ch40s1
+
+Email: zaratedaniel67@gmail.com

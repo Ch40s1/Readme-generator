@@ -116,7 +116,6 @@ const {
   renderLicenseBadge,
   renderLicenseLink,
   renderLicenseSection,
-  generateMarkdown,
 } = require('./generateMarkdown');
 // console.log(fs); 
 // fs.readFile('../README.md', 'utf-8', (err, data) => {
@@ -126,41 +125,46 @@ const {
 
 // questions for the user
 const questions = [
-  // {
-  //   type: "input",
-  //   message: "What your name?",
-  //   name: "userName"
-  // },
-  // {
-  //   type: "input",
-  //   message: "What your Github username?",
-  //   name: "githubName"
-  // },
-  // {
-  //   type: "input",
-  //   message: "What is the title of the repository?",
-  //   name: "repoName"
-  // },
-  // {
-  //   type: "input",
-  //   message: "Describe your repository?",
-  //   name: "repoDescription"
-  // },
-  // {
-  //   type: "input",
-  //   message: "How would someone install this repository?",
-  //   name: "repoInstallation"
-  // },
-  // {
-  //   type: "input",
-  //   message: "How should someone use this repository?",
-  //   name: "repoUsage"
-  // },
-  // {
-  //   type: "input",
-  //   message: "How would you want someone to contribute?",
-  //   name: "repoContribute"
-  // },
+  {
+    type: "input",
+    message: "What your name?",
+    name: "userName"
+  },
+  {
+    type: "input",
+    message: "What your Github username?",
+    name: "githubName"
+  },
+    {
+      type: "input",
+      message: "What your email and are there any instructions?",
+      name: "email"
+    },
+  {
+    type: "input",
+    message: "What is the title of the repository?",
+    name: "repoName"
+  },
+  {
+    type: "input",
+    message: "Describe your repository?",
+    name: "repoDescription"
+  },
+  {
+    type: "input",
+    message: "How would someone install this repository?",
+    name: "repoInstallation"
+  },
+  {
+    type: "input",
+    message: "How should someone use this repository?",
+    name: "repoUsage"
+  },
+  {
+    type: "input",
+    message: "How would you want someone to contribute?",
+    name: "repoContribute"
+  },
   {
     type: "list",
     message: "What is your preferred license?",
@@ -177,11 +181,11 @@ const questions = [
     // ],
     name: 'userLicense',
   },
-  // {
-  //   type: "input",
-  //   message: "What were some tests done in this repository?",
-  //   name: "repoTests"
-  // },
+  {
+    type: "input",
+    message: "What were some tests done in this repository?",
+    name: "repoTests"
+  },
 ];
 // gets answers and calls to update the read me
 inquirer
@@ -190,24 +194,24 @@ inquirer
     console.log(JSON.stringify(answers));
     const chosenLicense = renderLicenseBadge(answers.userLicense);
     const licenseLink = renderLicenseLink(answers.userLicense);
+    let userName = answers.userName;
+    console.log(userName);
+    const licenseSection = renderLicenseSection(answers.userLicense, userName);
     console.log(chosenLicense);
     // Update the readme with all the answers
-    updateReadme(answers, chosenLicense, licenseLink);
+    updateReadme(answers, chosenLicense, licenseLink, licenseSection);
   });
 
-function updateReadme(answers, chosenLicense, licenseLink) {
+function updateReadme(answers, chosenLicense, licenseLink, licenseSection) {
   const readmeContent =
 
 `
 ${chosenLicense}
 
-For more information on ${answers.userLicense} visit ${licenseLink}
+${licenseLink}
 
 # ${answers.repoName}
 ${answers.repoDescription}
-  
-## Website Link 
-${' this is were the live link will go'}
   
 ## Table of Contents
 * [Installation](#installation)
@@ -220,11 +224,6 @@ ${' this is were the live link will go'}
 ## Installation
 ${answers.repoInstallation}
   
-  
-## Website Image  
-  
-  ![(${'image description'})](${'image path'})
-  
 ## Usage
 ${answers.repoUsage}
 
@@ -233,13 +232,15 @@ ${answers.repoContribute}
   
 ## License
 ${licenseTexts[answers.userLicense]}
-Copyright (c) 2023 ${answers.userName}
-
+${licenseSection}
   
 ## Tests
 ${answers.repoTests} 
+
 ## Questions 
-https://github.com/${answers.githubName}`
+Github: https://github.com/${answers.githubName}
+
+Email: ${answers.email}`
 
   fs.writeFile('../README.md', readmeContent, (err) => {
     if (err) throw err;
