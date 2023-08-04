@@ -18,11 +18,11 @@ I recommend to download the zip file and add it to your repository. It can also 
   
 ## Usage
 Use nodejs and install inquirer version 8.2.4 using npm. After, run the file using node in the terminal, then asnswer the questions.  
-<img src="./images/intergrated terminal.png" alt="Help file" width="500" height="150">
-1. Right click the scripts folder and select "Open in intergrated Terminal".
-<img src="./images/filelocation.png" alt="Help file" width="500" height="150">
-2. Got to this file
-<img src="./images/nodescript.png" alt="Help file" width="500" height="150">
+<img src="./images/intergrated terminal.png" alt="File Sysytem" width="500" height="150">  
+1. Right click the scripts folder and select "Open in intergrated Terminal".  
+<img src="./images/filelocation.png" alt="Script file" width="500" height="150">  
+2. Got to this file  
+<img src="./images/nodescript.png" alt="Code line" width="500" height="150">  
 3. Bring up the terminal and type this line while in the scripts file  
 ## Contribute
 Fork or clone the repository then make a commit.
