@@ -166,7 +166,8 @@ inquirer
     const licenseLink = renderLicenseLink(answers.userLicense);
     // username is made into a varible so that we can gets its value more easily
     let userName = answers.userName;
-    const licenseSection = renderLicenseSection(answers.userLicense, userName);
+    let text = licenseTexts[answers.userLicense];
+    const licenseSection = renderLicenseSection(answers.userLicense, userName, text);
     console.log(chosenLicense);
     // Update the readme with all the answers
     updateReadme(answers, chosenLicense, licenseLink, licenseSection);
@@ -201,8 +202,6 @@ ${answers.repoUsage}
 ## Contribute
 ${answers.repoContribute}
   
-## License
-${licenseTexts[answers.userLicense]}
 ${licenseSection}
   
 ## Tests

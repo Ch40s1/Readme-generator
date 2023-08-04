@@ -42,12 +42,17 @@ function renderLicenseLink(license) {
 }
 
 // This is for the copyright section. is takes the username so it will write it in the copyright
-function renderLicenseSection(license, userName) {
+function renderLicenseSection(license, userName, text) {
   if (license == 'none'){
   return '';
 }else {
 
-  const renderSection = `Copyright (c) 2023 ${userName}`
+  const renderSection = 
+  `
+  ## License
+  ${text}
+  
+  Copyright (c) 2023 ${userName}`
   return renderSection;
 }
 };
