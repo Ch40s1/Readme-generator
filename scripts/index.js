@@ -213,7 +213,7 @@ Github: https://github.com/${answers.githubName}
 
 Email: ${answers.email}`
 // this essentially creates the file to the specified location
-  fs.writeFile('../README.md', readmeContent, (err) => {
+  fs.writeFile('./README.md', readmeContent, (err) => {
     if (err) throw err;
     console.log('README file updated!');
   });

@@ -18,8 +18,13 @@ This README generator is meant for those that want to save time in making a READ
 I recommend to download the zip file and add it to your repository. It can also be forked or cloned but any commits made to this repository will show in the sync.
   
 ## Usage
-Use nodejs and install inquirer version 8.2.4 using npm. After, run the file using node in the terminal, then asnswer the questions.
-
+Use nodejs and install inquirer version 8.2.4 using npm. After, run the file using node in the terminal, then asnswer the questions.  
+<img src="../readme-generator/images/intergrated%20terminal.png" alt="Help file" width="500" height="150"> 
+1. Right click the scripts folder and select "Open in intergrated Terminal".  
+![(Help-file)](../readme-generator/images/filelocation.png)  
+2. Got to this file  
+![(Help-file)](../readme-generator/images/nodescript.png)  
+3. Bring up the terminal and type this line while in the scripts file  
 ## Contribute
 Fork or clone the repository then make a commit.
   
@@ -43,3 +48,5 @@ n/a
 Github: https://github.com/Ch40s1
 
 Email: zaratedaniel67@gmail.com
+
+Video Walkthrough: 
