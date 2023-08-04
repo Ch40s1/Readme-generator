@@ -1,5 +1,6 @@
-// TODO: Create a function that returns a license badge based on which license is passed in
+// Creates a function that has the license badge
 function renderLicenseBadge(license) {
+  // each badge  has a color with its name in one section
   const licenseBadges = {
     "MIT": "[![MIT License](https://img.shields.io/badge/License-MIT-blue.svg)](https://opensource.org/licenses/MIT)",
     "Apache-2.0": "[![Apache-2.0 License](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](https://opensource.org/licenses/Apache-2.0)",
@@ -15,12 +16,12 @@ if (licenseBadges.hasOwnProperty(license)) {
   const chosenBadge = licenseBadges[license];
   return chosenBadge;
 } else {
+  // returns empty string
   return '';
 }
 }
 
-// TODO: Create a function that returns the license link
-// If there is no license, return an empty string
+// this is for the license link that use opensource and if there is no license then it return an empty string
 function renderLicenseLink(license) {
   const githubLicenseLinks = {
     "MIT": "https://opensource.org/licenses/MIT",
@@ -40,8 +41,7 @@ function renderLicenseLink(license) {
   }
 }
 
-// TODO: Create a function that returns the license section of README
-// If there is no license, return an empty string
+// This is for the copyright section. is takes the username so it will write it in the copyright
 function renderLicenseSection(license, userName) {
   if (license == 'none'){
   return '';
@@ -51,7 +51,7 @@ function renderLicenseSection(license, userName) {
   return renderSection;
 }
 };
-
+// exports needed functions
 module.exports = {
   renderLicenseBadge,
   renderLicenseLink,

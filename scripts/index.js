@@ -1,31 +1,4 @@
-// GIVEN a command-line application that accepts user input
-// WHEN I am prompted for information about my application repository
-// THEN a high-quality, professional README.md is generated with the 
-// title of my project and 
-// sections entitled Description, 
-// Table of Contents, 
-// Installation, 
-// Usage, 
-// License, 
-// Contributing, 
-// Tests, and 
-// Questions
-// WHEN I enter my project title
-// THEN this is displayed as the title of the README
-// WHEN I enter a description, installation instructions, usage information, contribution guidelines, and test instructions
-// THEN this information is added to the sections of the README entitled Description, Installation, Usage, Contributing, and Tests
-// WHEN I choose a license for my application from a list of options
-// THEN a badge for that license is added near the top of the README and a notice is added to the section of the README entitled License that explains which license the application is covered under
-// WHEN I enter my GitHub username
-// THEN this is added to the section of the README entitled Questions, with a link to my GitHub profile
-// WHEN I enter my email address
-// THEN this is added to the section of the README entitled Questions, with instructions on how to reach me with additional questions
-// WHEN I click on the links in the Table of Contents
-// THEN I am taken to the corresponding section of the README
-
-
-
-// this is body text for common licenses
+// this is body text for the most common licenses
 const licenseTexts = {
   "MIT": `
 MIT License
@@ -109,19 +82,15 @@ The laws of most jurisdictions throughout the world automatically confer exclusi
 "none": '',
 };
 
-
+// gets inquirer and the file system
 const fs = require('fs');
 const inquirer = require('inquirer');
+// gets functions as an object and also links to the generate markdown function
 const {
   renderLicenseBadge,
   renderLicenseLink,
   renderLicenseSection,
 } = require('./generateMarkdown');
-// console.log(fs); 
-// fs.readFile('../README.md', 'utf-8', (err, data) => {
-//   if (err) throw err;
-//   console.log(data);
-// })
 
 // questions for the user
 const questions = [
@@ -192,16 +161,18 @@ inquirer
   .prompt(questions)
   .then((answers) => {
     console.log(JSON.stringify(answers));
+    // calls the functions with the appropriate arguments. 
     const chosenLicense = renderLicenseBadge(answers.userLicense);
     const licenseLink = renderLicenseLink(answers.userLicense);
+    // username is made into a varible so that we can gets its value more easily
     let userName = answers.userName;
-    console.log(userName);
     const licenseSection = renderLicenseSection(answers.userLicense, userName);
     console.log(chosenLicense);
     // Update the readme with all the answers
     updateReadme(answers, chosenLicense, licenseLink, licenseSection);
   });
-
+// this part is the markdown, it is also what gets generated and updated on each session.
+// note: the table of content assumes that the user has the items
 function updateReadme(answers, chosenLicense, licenseLink, licenseSection) {
   const readmeContent =
 
@@ -212,7 +183,7 @@ ${licenseLink}
 
 # ${answers.repoName}
 ${answers.repoDescription}
-  
+
 ## Table of Contents
 * [Installation](#installation)
 * [Usage](#usage)
@@ -241,7 +212,7 @@ ${answers.repoTests}
 Github: https://github.com/${answers.githubName}
 
 Email: ${answers.email}`
-
+// this essentially creates the file to the specified location
   fs.writeFile('../README.md', readmeContent, (err) => {
     if (err) throw err;
     console.log('README file updated!');
